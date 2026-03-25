@@ -1,33 +1,29 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';// flutter temel uı elemanlarını kullanmak için gerekli
-import 'package:projeis/sayfalar/giris.dart';
+import 'package:flutter/material.dart';
+import 'package:projeis/screens/auth/login_screen.dart';
 import 'firebase_options.dart';
 
-//main fonksiyonu uygulamanın başlangıç noktasıdır ilk bura çalışır
-//async ve await anahtar kelimeleri ile asenkron bir fonksiyon oluşturulmuştur zamanlayıcı şeklinde çalışır
-//Firebase.initializeApp() fonksiyonu ile Firebase projesi başlatılır
-//runApp() fonksiyonu ile uygulama çalıştırılır
-void main ()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
-//MyApp sınıfı StatelessWidget sınıfından türetilmiştir
-//build metodu ile uygulamanın başlangıç noktası belirlenir
-//MaterialApp sınıfı ile uygulamanın temel özellikleri belirlenir
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-  
-       debugShowCheckedModeBanner: false,//debug modunda uygulamanın sağ üst köşesindeki debug yazısını kaldırır
-      theme: ThemeData(//uygulamanın teması belirlenir
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      debugShowCheckedModeBanner: false,
+      title: 'Proje Takip',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF24D876)),
         useMaterial3: true,
       ),
-     home: GirisSayfasi(),//uygulamanın başlangıç sayfası belirlenir ama ilk olarak import etmek lazım
+      home: const LoginScreen(),
     );
   }
 }
-
